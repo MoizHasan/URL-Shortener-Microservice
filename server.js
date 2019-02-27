@@ -31,6 +31,7 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
+var createUrl = require("./url.js").createAndSaveURL;
 app.get("/api/shorturl/new", function (req, res) {
   
 });

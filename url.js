@@ -8,4 +8,11 @@ var urlSchema = new mongoose.Schema({
   short_url: {unique: true, index: true}
 });
 
-var Url = mongoose.model('Url', urlSchema)
+var Url = mongoose.model('Url', urlSchema); 
+
+//create and save url 
+var createAndSaveURL = function(long_url, done) {
+    //check to see if this url hasn't already been entered. ]
+};
+
+//get url
