@@ -17,6 +17,6 @@ var createAndSaveURL = function(long_url, done) {
 };
 
 //get url
-var getUrlByShortUrl = function(done) {
-    
+var getUrlByShortUrl = function(short_url, done) {
+    Url.findOne({short_url: short_url}, function(err, url) {} )
 }
