@@ -29,7 +29,12 @@ app.get('/', function(req, res){
 
 var createUrl = require("./url.js").createAndSaveUrl;
 app.post("/api/shorturl/new", function (req, res) {
-    var 
+    
+});
+
+//var getUrlByShortUrl = require("./url.js").getUrlByShortUrl;
+app.get("./api/shorturl/:short_url", function (req, res) {
+  res.redirect(
 });
 
 app.listen(port, function () {
