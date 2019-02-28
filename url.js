@@ -4,15 +4,17 @@ mongoose.connect(process.env.MONGO_URI);
 //Create Url Model 
 
 var urlSchema = new mongoose.Schema({
-  original_url: {type: String, required: true},
-  short_url: {unique: true, index: true}
+  original_url: {type: String, unique: true, required: true},
+  short_url: {type: String, unique: true, required: true}
 });
 
 var Url = mongoose.model('Url', urlSchema); 
 
 //create and save url 
-var createAndSaveUrl = function(long_url, done) {
-    Url.create({original_url: long_url, short_url: 1})
+var createAndSaveUrl = function(long_url, done) 
+  //generate short url and verify that it doesn't already exist in db.
+  
+  var url = new Url({original_url: long_url, short_url: 1});
   
 };
 
