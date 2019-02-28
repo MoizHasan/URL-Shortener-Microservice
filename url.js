@@ -12,8 +12,7 @@ var Url = mongoose.model('Url', urlSchema);
 
 //create and save url 
 var createAndSaveURL = function(long_url, done) {
-    //check to see if this url hasn't already been entered.
-  var url = new Url ({long_url: url, short_url: 
+    Url.create({original_url: long_url, short_url: 
   
 };
 
