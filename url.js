@@ -11,7 +11,7 @@ var urlSchema = new mongoose.Schema({
 var Url = mongoose.model('Url', urlSchema); 
 
 //create and save url 
-var createAndSaveURL = function(long_url, done) {
+var createAndSaveUrl = function(long_url, done) {
     Url.create({original_url: long_url, short_url: 1})
   
 };

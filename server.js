@@ -27,9 +27,9 @@ app.get('/', function(req, res){
 });
 
 
-var createUrl = require("./url.js").createAndSaveURL;
-app.get("/api/shorturl/new", function (req, res) {
-  
+var createUrl = require("./url.js").createAndSaveUrl;
+app.post("/api/shorturl/new", function (req, res) {
+    var 
 });
 
 app.listen(port, function () {
