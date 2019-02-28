@@ -11,10 +11,11 @@ var urlSchema = new mongoose.Schema({
 var Url = mongoose.model('Url', urlSchema); 
 
 //create and save url 
-var createAndSaveUrl = function(long_url, done) 
+var createAndSaveUrl = function(long_url, done) {
   //generate short url and verify that it doesn't already exist in db.
+  var short_url = "";
   
-  var url = new Url({original_url: long_url, short_url: 1});
+  var url = new Url({original_url: long_url, short_url: short_url});
   
 };
 
