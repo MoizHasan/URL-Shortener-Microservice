@@ -1,8 +1,8 @@
 'use strict';
 
-var express = require('express');
-var mongo = require('mongodb');
-var mongoose = require('mongoose');
+const express = require('express');
+const mongo = require('mongodb');
+const mongoose = require('mongoose');
 
 var cors = require('cors');
 
@@ -18,6 +18,7 @@ app.use(cors());
 
 /** this project needs to parse POST bodies **/
 // you should mount the body-parser here
+const body_parser = require('body-parser');
 
 var Url = require("./url.js").UrlModel;
 app.use('/public', express.static(process.cwd() + '/public'));

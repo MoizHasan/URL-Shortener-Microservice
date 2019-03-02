@@ -14,7 +14,7 @@ var Url = mongoose.model('Url', urlSchema);
 var createAndSaveUrl = function(long_url, done) {
   //verify that passed in url is valid
   //generate short url and verify that it doesn't already exist in db.
-  while
+  while(1) { };
   var short_url = "";
   
   var url = new Url({original_url: long_url, short_url: short_url});
