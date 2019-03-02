@@ -16,13 +16,13 @@ mongoose.connect(process.env.MONGOLAB_URI);
 
 app.use(cors());
 //import routes
-const url = require('./routes.js');
+const routes = require('./routes.js');
 /** this project needs to parse POST bodies **/
 // you should mount the body-parser here
 const body_parser = require('body-parser');
 app.use(body_parser.json());
 app.use(body_parser.urlencoded({extended: false}));
-app.use('/urls', url);
+app.use('./routes', routes);
 
 const url_controller = require('../controllers/url.controller');
 
