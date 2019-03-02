@@ -1,6 +1,7 @@
 var Url = require('../models/url');
 
 exports.shorten_url = function (req, res, next) {
+    // add some sort of url validation here.
     var short_url = generate_short_url(); 
     let url = new Url(
         {
@@ -17,8 +18,11 @@ exports.shorten_url = function (req, res, next) {
     })
 };
 
-generate_short_url = function() {
+var generate_short_url = function() {
     var short_url = "";
-    
+    let char_string = "0123456789abcdfghjklmnpqrs";
+    for (let i = 0; i <= 8; i++) {
+        short_url += char_string.charAt();
+    }
     return short_url;
 }
