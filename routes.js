@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 // Require the controllers
-var url_controller = require('../controllers/url.controller');
+var url_controller = require('./controllers/url.js');
 
 
 router.post('./api/shorturl/new', url_controller.new_url);
