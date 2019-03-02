@@ -22,7 +22,7 @@ var generate_short_url = function() {
     var short_url = "";
     let char_string = "0123456789abcdfghjklmnpqrs";
     for (let i = 0; i <= 8; i++) {
-        short_url += char_string.charAt();
+        short_url += char_string.charAt(Math.floor((Math.random() * char_string.length-1)));
     }
     return short_url;
 }
