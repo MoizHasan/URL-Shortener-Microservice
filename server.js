@@ -24,7 +24,7 @@ app.use(body_parser.json());
 app.use(body_parser.urlencoded({extended: false}));
 app.use('/urls', url);
 
-const product_controller = require('../controllers/product.controller');
+const url_controller = require('../controllers/url.controller');
 
 
 app.listen(port, function () {

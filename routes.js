@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-// Require the controllers WHICH WE DID NOT CREATE YET!!
-var url_controller = require('../controllers/url');
+// Require the controllers
+var url_controller = require('../controllers/url.controller');
 
 
 router.post('./api/shorturl/new', url_controller.new_url);
