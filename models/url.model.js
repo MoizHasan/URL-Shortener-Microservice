@@ -8,5 +8,5 @@ var urlSchema = new mongoose.Schema({
   short_url: {type: String, unique: true, required: true}
 });
 
-var Url = mongoose.model('Url', urlSchema); 
-
+// Export the model
+module.exports = mongoose.model('Url', UrlSchema);
