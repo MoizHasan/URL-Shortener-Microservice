@@ -35,7 +35,7 @@ app.post("/api/shorturl/new", function (req, res) {
 
 //var getUrlByShortUrl = require("./url.js").getUrlByShortUrl;
 app.get("./api/shorturl/:short_url", function (req, res) {
-  res.redirect(
+  res.redirect(req.params.long_url);
 });
 
 app.listen(port, function () {
