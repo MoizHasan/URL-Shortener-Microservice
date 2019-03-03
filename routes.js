@@ -4,6 +4,9 @@ var router = express.Router();
 // Require the controllers
 var url_controller = require('./controllers/url.js');
 
+// a simple test url to check that all of our files are communicating correctly.
+router.get('/test', url_controller.test);
+
 router.get('/', function(req, res){
   res.sendFile(process.cwd() + '/views/index.html');
 });

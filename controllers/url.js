@@ -1,21 +1,26 @@
 var Url = require('../models/url');
 
+exports.test = function (req, res) {
+    res.send('Greetings from the Test controller!');
+};
+
 exports.shorten_url = function (req, res, next) {
     // add some sort of url validation here.
-    var short_url = generate_short_url(); 
-    let url = new Url(
-        {
-            original_url: req.body.url,
-            short_url: short_url
-        }
-    );
+//     var short_url = generate_short_url(); 
+//     let url = new Url(
+//         {
+//             original_url: req.body.url,
+//             short_url: short_url
+//         }
+//     );
 
-  url.save(function (err) {
-        if (err) {
-            return next(err);
-        }
-        res.send('URL saved successfully');
-    });
+//   url.save(function (err) {
+//         if (err) {
+//             return next(err);
+//         }
+//         res.send('URL saved successfully');
+//     });
+  res.json({original_url: req.body.url});
 };
 
 var generate_short_url = function() {
