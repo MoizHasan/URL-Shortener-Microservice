@@ -16,7 +16,8 @@ mongoose.connect(process.env.MONGO_URI);
 
 app.use(cors());
 //import routes
-const routes = require('./routes.js');
+var routes = require('./routes');
+
 /** this project needs to parse POST bodies **/
 // you should mount the body-parser here
 const body_parser = require('body-parser');
@@ -26,10 +27,9 @@ app.use('./routes', routes);
 
 const url_controller = require('./controllers/url.js');
 
-app.get('/', function(req, res){
-  res.sendFile(process.cwd() + '/views/index.html');
-});
 
 app.listen(port, function () {
    console.log('Node.js listening ...');
  });
+
+module.exports = mongoose;
