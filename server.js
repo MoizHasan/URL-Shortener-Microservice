@@ -12,7 +12,7 @@ var app = express();
 var port = process.env.PORT || 3000;
 
 /** this project needs a db !! **/ 
-mongoose.connect(process.env.MONGOLAB_URI);
+//mongoose.connect(process.env.MONGOLAB_URI);
 
 app.use(cors());
 //import routes
@@ -27,6 +27,6 @@ app.use('./routes', routes);
 const url_controller = require('./controllers/url.js');
 
 
-app.listen(port, function () {
-  console.log('Node.js listening ...');
-});
+// app.listen(port, function () {
+//   console.log('Node.js listening ...');
+// });

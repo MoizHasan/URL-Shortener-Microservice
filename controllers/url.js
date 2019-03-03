@@ -14,7 +14,7 @@ exports.shorten_url = function (req, res, next) {
         if (err) {
             return next(err);
         }
-        res.send('URL ');
+        res.send('URL saved successfully');
     });
 };
 
@@ -27,13 +27,12 @@ var generate_short_url = function() {
     return short_url;
 }
 
-exports.redirect_to_url = function(req, res, short_url) {
+exports.redirect_to_url = function(req, res, next, short_url) {
     //find one by short url
     var long_url = Url.findOne({short_url: short_url}).exec(function (err, url) {
     if (err) {
-      
+        return next(err);
     }
-    
     });
     res.redirect(long_url); 
 }
