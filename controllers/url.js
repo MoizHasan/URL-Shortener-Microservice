@@ -14,8 +14,8 @@ exports.shorten_url = function (req, res, next) {
         if (err) {
             return next(err);
         }
-        res.send('');
-    })
+        res.send('URL ');
+    });
 };
 
 var generate_short_url = function() {
@@ -29,6 +29,11 @@ var generate_short_url = function() {
 
 exports.redirect_to_url = function(req, res, short_url) {
     //find one by short url
-    long_url = Url.findByOne();
+    var long_url = Url.findOne({short_url: short_url}).exec(function (err, url) {
+    if (err) {
+      
+    }
+    
+    });
     res.redirect(long_url); 
 }
