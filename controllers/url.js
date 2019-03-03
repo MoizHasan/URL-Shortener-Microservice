@@ -26,3 +26,8 @@ var generate_short_url = function() {
     }
     return short_url;
 }
+
+exports.redirect_to_url = function(short_url) {
+    //find one by short url
+    
+}

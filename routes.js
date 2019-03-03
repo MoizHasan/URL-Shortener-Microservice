@@ -5,7 +5,7 @@ var router = express.Router();
 var url_controller = require('./controllers/url.js');
 
 
-router.post('./api/shorturl/new', url_controller.new_url);
+router.post('./api/shorturl/new', url_controller.shorten_url);
 
 router.get('./api/shorturl/:short_url', url_controller.redirect_to_url);
 
