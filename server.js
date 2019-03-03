@@ -16,7 +16,7 @@ mongoose.connect(process.env.MONGO_URI);
 
 app.use(cors());
 //import routes
-var routes = require('./routes');
+var routes = require('./routes.js');
 
 /** this project needs to parse POST bodies **/
 // you should mount the body-parser here
