@@ -26,6 +26,9 @@ app.use('./routes', routes);
 
 const url_controller = require('./controllers/url.js');
 
+app.get('/', function(req, res){
+  res.sendFile(process.cwd() + '/views/index.html');
+});
 
 app.listen(port, function () {
    console.log('Node.js listening ...');
