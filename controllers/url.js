@@ -27,7 +27,8 @@ var generate_short_url = function() {
     return short_url;
 }
 
-exports.redirect_to_url = function(short_url) {
+exports.redirect_to_url = function(req, res, short_url) {
     //find one by short url
-    
+    long_url = Url.findByOne();
+    res.redirect(long_url); 
 }
