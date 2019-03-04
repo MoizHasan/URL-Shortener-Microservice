@@ -7,10 +7,6 @@ exports.test = function (req, res) {
 exports.create_short_url = function (req, res, next) {
   const url = req.body.url;
   if (validURL(url)) { //validity check
-    Url.findOne({original_url : url}).then(found => {
-        if (found) {
-          res.json({origial_url: url, short_url: found.short});
-      );
       shorten_url(req, res, next);
   } else {
     res.json({error: "Invalid URL"});
@@ -18,8 +14,12 @@ exports.create_short_url = function (req, res, next) {
 };
 
   var shorten_url = function(req, res, next) {
+    const url = req.body.url;
     //return stored result if url has already been entered.
-
+      Url.findOne({original_url : url}).then(found => {
+        if (found) {
+          res.json({origial_url: url, short_url: found.short_url});
+        } else {
         var short_url = generate_short_url(); 
         let url = new Url(
         {
@@ -33,7 +33,9 @@ exports.create_short_url = function (req, res, next) {
         }
         res.send('URL saved successfully');
     });
-  res.json({original_url: req.body.url, short_url: short_url});
+        res.json({original_url: req.body.url, short_url: short_url});
+        }
+      });
   }
 
 
