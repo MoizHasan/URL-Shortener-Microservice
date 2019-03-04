@@ -23,7 +23,7 @@ var routes = require('./routes.js');
 const body_parser = require('body-parser');
 app.use(body_parser.json());
 app.use(body_parser.urlencoded({extended: false}));
-//app.use('/', routes);
+app.use('/', routes);
 
 const url_controller = require('./controllers/url.js');
 
