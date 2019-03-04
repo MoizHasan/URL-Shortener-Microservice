@@ -11,7 +11,7 @@ router.get('/', function(req, res){
   res.sendFile(process.cwd() + '/views/index.html');
 });
 
-router.post('/api/shorturl/new', url_controller.shorten_url);
+router.post('/api/shorturl/new', url_controller.create_short_url);
 
 router.get('/api/shorturl/:short_url', url_controller.redirect_to_url);
 

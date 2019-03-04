@@ -4,29 +4,34 @@ exports.test = function (req, res) {
     res.send('Greetings from the Test controller!');
 };
 
-exports.shorten_url = function (req, res, next) {
-    var already_exists = false;
-    if (validURL(req.body.url)) { //validity check
-    //return stored result if url has already been entered.
-    var check_url = Url.findOne({original_url: req.body.url}, function (err, url) {
-    if (url !== null) {
-    if (err) {
-        res.json({error: "document error"});
-    } else {
-       var original_url = url.original_url;
-      res.json({original_url: original_url, short_url: url.short_url});
-      already_exists = true;
-     }
+exports.create_short_url = function (req, res, next) {
+  if (validURL(req.body.url)) { //validity check
+      shorten_url(req, res, next);
+  } else {
+    res.json({error: "Invalid URL"});
     }
-    });
-      if (!already_exists) {
-    var short_url = generate_short_url(); 
-    let url = new Url(
-        {
-            original_url: req.body.url,
-            short_url: short_url
+};
+  var shorten_url = function(req, res, next) {
+    //return stored result if url has already been entered.
+    var already_exists = false;
+    var check_url = Url.findOne({original_url: req.body.url}, function (err, url) {
+        if (url !== null) {
+            if (err) {
+                res.json({error: "document error"});
+            } else {
+                var original_url = url.original_url;
+                res.json({original_url: original_url, short_url: url.short_url});
+                already_exists = true;
+            }
         }
-    );
+    });
+    if (!already_exists) {
+        var short_url = generate_short_url(); 
+        let url = new Url(
+        {
+          original_url: req.body.url,
+          short_url: short_url
+        });
 
   url.save(function (err) {
         if (err) {
@@ -35,11 +40,9 @@ exports.shorten_url = function (req, res, next) {
         res.send('URL saved successfully');
     });
   res.json({original_url: req.body.url, short_url: short_url});
-} else {
-  res.json({error: "Invalid URL"});
-}
     }
-};
+  }
+
 
 function validURL(str) { //from devshed
   var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
