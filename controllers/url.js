@@ -35,13 +35,13 @@ var generate_short_url = function() {
 exports.redirect_to_url = function(req, res, next) {
     //find one by short url
     var short_url = req.params.short_url;
-    var original_url = Url.findOne({short_url: short_url}).exec(function (err, url) {
+    //Adventure.findOne({ type: 'iphone' }, 'name', function (err, adventure) {});
+    var original_url = Url.findOne({short_url: short_url}, function (err, url) {
     if (err) {
-        console.log("you idiot");
         return next(err);
     } else {
-      res.redirect(301, "yahoo.com");
-    }
+       res.redirect(301, url.original_url);
+     }
     });
-    res.json({long_url: original_url.original_url}); 
+    res.json({long_url: original_url}); 
 }
