@@ -49,10 +49,14 @@ exports.redirect_to_url = function(req, res, next) {
     //find one by short url
     var short_url = req.params.short_url;
     var original_url = Url.findOne({short_url: short_url}, function (err, url) {
+    if (original_url !== null) {
     if (err) {
-        res.json({error: "Oops"});
+        res.json({error: "document error"});
     } else {
        res.redirect(301, url.original_url);
      }
+    } else {
+     throw new Error("No matching results found."); 
+    }
     });
 }
