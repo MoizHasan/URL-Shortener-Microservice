@@ -15,7 +15,7 @@ exports.create_short_url = function (req, res, next) {
     //return stored result if url has already been entered.
     var already_exists = false;
     var check_url = Url.findOne({original_url: req.body.url}, function (err, url) {
-        if (url !== null) {
+        if (1 === 1) {
             if (err) {
                 res.json({error: "document error"});
             } else {
@@ -39,7 +39,7 @@ exports.create_short_url = function (req, res, next) {
         }
         res.send('URL saved successfully');
     });
-  res.json({original_url: req.body.url, short_url: short_url});
+  res.json({original_url: req.body.url, short_url: already_exists});
     }
   }
 
