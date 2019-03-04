@@ -18,7 +18,7 @@ exports.create_short_url = function (req, res, next) {
     //return stored result if url has already been entered.
       Url.findOne({original_url : url}).then(found => {
         if (found) {
-          res.json({origial_url: url, short_url: found.short_url});
+          res.json({origial_url: url, short_url: req.get('host') + '/api/shorturl/' + found.short_url});
         } else {
         var short_url = generate_short_url(); 
         let url = new Url(
@@ -33,7 +33,7 @@ exports.create_short_url = function (req, res, next) {
         }
         res.send('URL saved successfully');
     });
-        res.json({original_url: req.body.url, short_url: short_url});
+        res.json({original_url: req.body.url, short_url: req.get('host') + '/api/shorturl/' + short_url});
         }
       });
   }
