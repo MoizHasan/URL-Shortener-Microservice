@@ -5,6 +5,7 @@ exports.test = function (req, res) {
 };
 
 exports.shorten_url = function (req, res, next) {
+    var already_exists = false;
     if (validURL(req.body.url)) { //validity check
     //return stored result if url has already been entered.
     var check_url = Url.findOne({original_url: req.body.url}, function (err, url) {
@@ -13,9 +14,12 @@ exports.shorten_url = function (req, res, next) {
         res.json({error: "document error"});
     } else {
        var original_url = url.original_url;
+      res.json({original_url: original_url, short_url: url.short_url});
+      already_exists = true;
      }
-    }   
+    }
     });
+      if (!already_exists) {
     var short_url = generate_short_url(); 
     let url = new Url(
         {
@@ -34,6 +38,7 @@ exports.shorten_url = function (req, res, next) {
 } else {
   res.json({error: "Invalid URL"});
 }
+    }
 };
 
 function validURL(str) { //from devshed
