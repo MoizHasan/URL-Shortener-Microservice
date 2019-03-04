@@ -34,11 +34,11 @@ var generate_short_url = function() {
 
 exports.redirect_to_url = function(req, res, next) {
     //find one by short url
-    var short_url = req.body.short_url;
+    var short_url = req.params.short_url;
     var long_url = Url.findOne({short_url: short_url}).exec(function (err, url) {
     if (err) {
         return next(err);
     }
     });
-    res.json({long_url: short_url}); 
+    res.json({long_url: long_url}); 
 }
