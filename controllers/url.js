@@ -7,7 +7,15 @@ exports.test = function (req, res) {
 exports.shorten_url = function (req, res, next) {
     if (validURL(req.body.url)) { //validity check
     //return stored result if url has already been entered.
-    
+    var check_url = Url.findOne({original_url: req.body.url}, function (err, url) {
+    if (url !== null) {
+    if (err) {
+        res.json({error: "document error"});
+    } else {
+       var original_url = url.original_url;
+     }
+    }   
+    });
     var short_url = generate_short_url(); 
     let url = new Url(
         {
