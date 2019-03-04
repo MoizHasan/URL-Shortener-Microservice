@@ -5,7 +5,7 @@ exports.test = function (req, res) {
 };
 
 exports.shorten_url = function (req, res, next) {
-    if (validURL(req.body.url) {
+    if (validURL(req.body.url)) {
     var short_url = generate_short_url(); 
     let url = new Url(
         {
@@ -21,7 +21,9 @@ exports.shorten_url = function (req, res, next) {
         res.send('URL saved successfully');
     });
   res.json({original_url: req.body.url, short_url: short_url});
-  
+} else {
+  res.json({error: "Invalid URL"});
+}
 };
 
 function validURL(str) { //from devshed
