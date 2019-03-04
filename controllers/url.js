@@ -23,6 +23,16 @@ exports.shorten_url = function (req, res, next) {
   res.json({original_url: req.body.url, short_url: short_url});
 };
 
+function validURL(str) { //from devshed
+  var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+    '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+  return !!pattern.test(str);
+}
+
 var generate_short_url = function() {
     var short_url = "";
     let char_string = "0123456789abcdfghjklmnpqrs";
@@ -35,13 +45,11 @@ var generate_short_url = function() {
 exports.redirect_to_url = function(req, res, next) {
     //find one by short url
     var short_url = req.params.short_url;
-    //Adventure.findOne({ type: 'iphone' }, 'name', function (err, adventure) {});
     var original_url = Url.findOne({short_url: short_url}, function (err, url) {
     if (err) {
-        return next(err);
+        res.json({error: "Oops"});
     } else {
        res.redirect(301, url.original_url);
      }
     });
-    res.json({long_url: original_url}); 
 }
