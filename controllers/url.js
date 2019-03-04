@@ -11,21 +11,10 @@ exports.create_short_url = function (req, res, next) {
     res.json({error: "Invalid URL"});
     }
 };
+
   var shorten_url = function(req, res, next) {
     //return stored result if url has already been entered.
-    var already_exists = false;
-    var check_url = Url.findOne({original_url: req.body.url}, function (err, url) {
-        if (1 === 1) {
-            if (err) {
-                res.json({error: "document error"});
-            } else {
-                var original_url = url.original_url;
-                res.json({original_url: original_url, short_url: url.short_url});
-                already_exists = true;
-            }
-        }
-    });
-    if (!already_exists) {
+
         var short_url = generate_short_url(); 
         let url = new Url(
         {
@@ -39,8 +28,7 @@ exports.create_short_url = function (req, res, next) {
         }
         res.send('URL saved successfully');
     });
-  res.json({original_url: req.body.url, short_url: already_exists});
-    }
+  res.json({original_url: req.body.url, short_url: short_url});
   }
 
 
