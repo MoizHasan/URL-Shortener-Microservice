@@ -5,8 +5,9 @@ exports.test = function (req, res) {
 };
 
 exports.create_short_url = function (req, res, next) {
-  if (validURL(req.body.url)) { //validity check
-    Url.findOne
+  const url = req.body.url;
+  if (validURL(url)) { //validity check
+    Url.findOne({original_url : url});
       shorten_url(req, res, next);
   } else {
     res.json({error: "Invalid URL"});
